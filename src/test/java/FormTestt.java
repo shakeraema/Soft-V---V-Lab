@@ -1,6 +1,5 @@
 import java.io.File;
 
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -11,10 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class FormTest {
+public class FormTestt {
 
-    @Test
-    public void testFormSubmission() throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
         WebDriver driver = new ChromeDriver(options);
@@ -87,4 +85,6 @@ address.sendKeys("Dhaka, Bangladesh");
         driver.quit();
         System.out.println("✅ Form submission test completed.");
     }
-}
+    } 
+        
+
