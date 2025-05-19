@@ -1,3 +1,7 @@
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -8,9 +12,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class FormTestt {
+public class FormTest {
 
-    public static void main(String[] args) throws InterruptedException {
+    @Test
+    @DisplayName("Form Submission Test")
+    @RepeatedTest(1)
+    @Order(1)
+    public void testFormSubmission() throws InterruptedException {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
         WebDriver driver = new ChromeDriver(options);
@@ -19,13 +27,14 @@ public class FormTestt {
         driver.get("https://demoqa.com/automation-practice-form");
         Thread.sleep(2000); // Sleep for 2 seconds
         // Fill text fields
+
         driver.findElement(By.id("firstName")).sendKeys("Shakera");
         driver.findElement(By.id("lastName")).sendKeys("Ema");
         driver.findElement(By.id("userEmail")).sendKeys("shakerajannatema@gmail.com");
 
         // Select Female by clicking label
-        driver.findElement(By.cssSelector("#genterWrapper > div.col-md-9.col-sm-12 > div:nth-child(2) > label")).click();
-        
+        driver.findElement(By.cssSelector("#genterWrapper > div.col-md-9.col-sm-12 > div:nth-child(2) > label"))
+                .click();
 
         driver.findElement(By.id("userNumber")).sendKeys("01854088947");
 
@@ -44,21 +53,22 @@ public class FormTestt {
 
         // Upload Picture
         // String filePath = new File("src/test/resources/sample.png").getAbsolutePath(); // replace with actual path
-        driver.findElement(By.id("uploadPicture")).sendKeys("/Users/shakera/Downloads/Study/3-2/Soft V & V/Lab/try1/demo/src/test/resources/ema1.png");
+        driver.findElement(By.id("uploadPicture"))
+                .sendKeys("/Users/shakera/Downloads/Study/3-2/Soft V & V/Lab/try1/demo/src/test/resources/ema1.png");
 
         // Current address
         // Close modal if present
         if (driver.findElements(By.id("closeLargeModal")).size() > 0) {
             WebElement closeButton = driver.findElement(By.id("closeLargeModal"));
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", closeButton);
-            
-}
 
-// Scroll and interact with currentAddress
-WebElement address = driver.findElement(By.id("currentAddress"));
-// ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", address);
-Thread.sleep(500);
-address.sendKeys("Dhaka, Bangladesh");
+        }
+
+        // Scroll and interact with currentAddress
+        WebElement address = driver.findElement(By.id("currentAddress"));
+        // ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", address);
+        Thread.sleep(500);
+        address.sendKeys("Dhaka, Bangladesh");
         // Select state & city (interacting with dropdowns)
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,300)");
